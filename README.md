@@ -44,3 +44,13 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## gird和flex 各自的应用场景
+1.要考虑是一维布局还是二维布局
+一般来说，一维布局用flex，二维布局用grid
+2.是从内容出发还是布局出发？
+从内容出发：你先有一组内容（数量一般不固定），然后希望他们均匀的分布在容器中，由内容自己的大小决定占据的空间
+从布局出发：先规划网格（数量一般比较固定），然后再把元素往里填充
+从内容出发：flex
+从布局出发：grid
