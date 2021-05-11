@@ -6,12 +6,14 @@ import { SearchPanel } from './search-panel'
 import { Button, Typography } from 'antd'
 import styled from '@emotion/styled'
 import { useProject } from 'utils/project'
-import { useProjectsSearchParams } from './util'
+import { useProjectModal, useProjectsSearchParams } from './util'
 import { useUsers } from 'utils/user'
-import { Row } from 'components/lib'
+import { ButtonNoPadding, Row } from 'components/lib'
 
-export const ProjectListScreen = (props: { projectButton:JSX.Element }) => {
+export const ProjectListScreen = () => {
   useDocumentTitle('项目列表', false)
+
+  const {open} = useProjectModal()
 
   const [param, setParam] = useProjectsSearchParams()
 
@@ -22,12 +24,16 @@ export const ProjectListScreen = (props: { projectButton:JSX.Element }) => {
   return <Container>
     <Row between={true}>
       <h1>项目列表</h1>
-      {props.projectButton}
+      <ButtonNoPadding
+        type={'link'}
+        onClick={open}
+      >
+        创建项目
+          </ButtonNoPadding>
     </Row>
     <SearchPanel users={users || []} param={param} setParam={setParam} />
     {error ? <Typography.Text type={'danger'}>{error.message}</Typography.Text> : null}
     <List
-      projectButton={props.projectButton}
       refresh={retry}
       users={users || []}
       dataSource={list || []}

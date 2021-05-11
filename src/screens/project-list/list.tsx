@@ -6,6 +6,7 @@ import React from "react";
 import { User } from "./search-panel";
 import { useEditProject } from "utils/project";
 import { ButtonNoPadding } from "components/lib";
+import { useProjectModal } from "./util";
 
 export interface Project {
   id: number;
@@ -19,12 +20,12 @@ export interface Project {
 interface ListProps extends TableProps<Project> {
   users: User[];
   refresh?: () => void;
-  projectButton:JSX.Element;
 }
 
 const dayjs = require("dayjs");
 
 export const List = ({ users, ...props }: ListProps) => {
+  const {open} = useProjectModal()
   const { mutate } = useEditProject()
   const pinProject = (id: number) => (pin: boolean) => mutate({ id, pin }).then(props.refresh)
   return (
@@ -77,7 +78,12 @@ export const List = ({ users, ...props }: ListProps) => {
           render(value, project) {
             return <Dropdown overlay={<Menu>
               <Menu.Item key={'edit'}>
-                {props.projectButton}
+              <ButtonNoPadding
+                      type={'link'}
+                      onClick={open}
+                    >
+                      创建项目
+                    </ButtonNoPadding>
               </Menu.Item>
               {/* <Menu.Item key={'edit'}>
                 <ButtonNoPadding>编辑</ButtonNoPadding>
