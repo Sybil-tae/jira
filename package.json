@@ -43,6 +43,8 @@
     ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.2.0",
+    "@commitlint/config-conventional": "^18.1.0",
     "eslint-config-prettier": "^9.0.0",
     "husky": ">=7",
     "lint-staged": ">=10",
